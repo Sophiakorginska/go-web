@@ -22,4 +22,4 @@ install:
 script: buffalo test
 
 after_success: 
-  - curl -I -u $Username:$Token "http://$IPAddress:8080/job/go-web-app/build?token=SECURETOKEN"
+  - curl -I -u $Username:$Token "http://$IPAddress:8080/job/goapp/build?token=SECRET"
