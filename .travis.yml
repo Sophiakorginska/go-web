@@ -1,0 +1,22 @@
+language: go
+
+go:
+  - "1.11.x"
+
+env:
+  - GO_ENV=test
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database goapp_test;' -U postgres
+  - mkdir -p $TRAVIS_BUILD_DIR/public/assets
+
+go_import_path: goapp
+
+install:
+  - go get github.com/gobuffalo/buffalo/buffalo
+  - go get $(go list ./... | grep -v /vendor/)
+
+script: buffalo test
